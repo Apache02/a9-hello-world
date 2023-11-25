@@ -1,0 +1,9 @@
+services:
+  builder:
+    image: bk7252-builder
+    build:
+      context: .
+    command:
+      - "echo 'use \"docker-compose exec -u $(id -u) builder bash\" to get the shell'; sleep 31536000"
+    volumes:
+      - ./src:/app
