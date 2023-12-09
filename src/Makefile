@@ -10,7 +10,7 @@ BIN = $(PREFIX)objcopy
 LDFLAGS = -T linker.ld --whole-archive
 DIS = $(PREFIX)objdump
 
-OBJS = build/hello-world.o build/uart.o build/entry.a
+OBJS = build/hello-world.o build/uart.o build/wdt.o build/entry.a
 
 BUILT = hello-world.elf hello-world.bin hello-world.dis
 
@@ -27,6 +27,7 @@ build : build/hello-world.elf
 build/hello-world.elf : $(OBJS) linker.ld
 	$(LD) $(LDFLAGS) -o $@ $(OBJS)
 	$(BIN) -O binary build/hello-world.elf build/hello-world.bin
+	chmod -x build/hello-world.elf build/hello-world.bin
 	$(DIS) -d build/hello-world.elf > build/hello-world.dis
 	encrypt_crc build/hello-world.bin build/hello-world_crc.bin
 

@@ -1,7 +1,5 @@
 #include "uart.h"
-
-#define REG_READ(addr)          (*((volatile UINT32 *)(addr)))
-#define REG_WRITE(addr, _data)    (*((volatile UINT32 *)(addr)) = (_data))
+#include "arch.h"
 
 
 #define UART_CLOCK_FREQ_10M          10000000

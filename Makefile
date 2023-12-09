@@ -1,4 +1,4 @@
-DOCKER_IMAGE = bk7252-builder
+DOCKER_IMAGE = bk7252-hw-builder
 
 all: builder build
 

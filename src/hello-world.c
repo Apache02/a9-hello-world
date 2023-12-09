@@ -1,4 +1,5 @@
 #include "uart.h"
+#include "wdt.h"
 
 void kprint(const char *message) {
     while (*message != '\0') {
@@ -41,11 +42,13 @@ int main() {
     kprint("Hello, World!!1\r\n");
     sleep(1);
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 5; i++) {
         kprint_uart(UART1_PORT, "Hello UART1\r\n");
         kprint_uart(UART2_PORT, "Hello UART2\r\n");
         sleep(1);
     }
+
+    wdt_reboot();
 
     return 0;
 }
