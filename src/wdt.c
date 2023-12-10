@@ -57,10 +57,3 @@ void wdt_down(void) {
     reg |= PWD_ARM_WATCHDOG_CLK_BIT;
     REG_WRITE(ICU_PERI_CLK_PWD, reg);
 }
-
-void wdt_reboot(void) {
-    wdt_set(10);
-    wdt_up();
-    while (1);
-}
-

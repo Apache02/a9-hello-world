@@ -12,7 +12,5 @@ void wdt_up(void);
 
 void wdt_down(void);
 
-void wdt_reboot(void);
-
 
 #endif // _WDT_H_
