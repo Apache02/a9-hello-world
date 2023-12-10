@@ -10,7 +10,7 @@ BIN = $(PREFIX)objcopy
 LDFLAGS = -T linker.ld --whole-archive
 DIS = $(PREFIX)objdump
 
-OBJS = build/hello-world.o build/uart.o build/wdt.o build/entry.a
+OBJS = build/hello-world.o build/entry.a build/drivers.a
 
 BUILT = hello-world.elf hello-world.bin hello-world.dis
 
@@ -33,7 +33,7 @@ build/hello-world.elf : $(OBJS) linker.ld
 
 build/%.o : %.c
 	@mkdir -p $(shell dirname $@)
-	$(CC) $(CFLAGS) -c -o $@ $^
+	$(CC) $(CFLAGS) -c -I./ -o $@ $^
 
 build/%.o : %.s
 	@mkdir -p $(shell dirname $@)
@@ -42,6 +42,9 @@ build/%.o : %.s
 # entry.a
 
 build/entry.a : build/entry/ll.o build/entry/boot_vectors.o build/entry/boot_handlers.o build/entry/arm.o build/entry/arch_main.o
+	$(AR) $(ARFLAGS) $@ $^
+
+build/drivers.a : build/drivers/uart.o build/drivers/wdt.o
 	$(AR) $(ARFLAGS) $@ $^
 
 clean :

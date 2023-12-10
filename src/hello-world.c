@@ -1,5 +1,5 @@
-#include "uart.h"
-#include "wdt.h"
+#include "drivers/uart.h"
+#include "drivers/wdt.h"
 
 void kprint(const char *message) {
     while (*message != '\0') {
